@@ -1,0 +1,62 @@
+TUTO install
+
+apt install curl build-essential gcc make -y
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	1
+apt-get install pkgconf
+apt-get install clang
+apt-get install cmake
+
+wget https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.gz ////NON!
+tar xzf protobuf-2.6.1.tar.gz ///NON/////
+cd protobuf-2.6.1 /////////////////////!!!!!!!!!!3.6.1!!!!!!!!!!!!//////https://gist.github.com/ryujaehun/991f5f1e8c1485dea72646877707f497
+sudo apt-get update
+sudo apt-get install build-essential
+sudo ./configure
+sudo make
+sudo make check
+sudo make install 
+sudo ldconfig
+protoc --version
+
+apt-get install libseccomp-dev
+apt-get install libusb-dev
+		libkrb5
+		libclamav
+		libdbus-1-dev
+		libxtst 
+		libx11
+		libfuse
+
+apt-get install cargo
+
+git clone https://github.com/cea-sec/usbsas.git
+
+
+
+cd USBSAS/
+cargo build --release					Xok
+cargo build --release -p usbsas-analyzer-server
+cargo build --release -p usbsas-tools			Xok
+cargo build --release --manifest-path=usbsas-hid/hid-user/Cargo.toml
+cargo build --release --manifest-path=usbsas-hid/hid-dealer/Cargo.toml
+
+X = error: failed to run custom build command for `usbsas-proto v0.1.0 (/root/usbsas/usbsas-proto)`
+
+Caused by:
+  process didn't exit successfully: `/root/usbsas/target/release/build/usbsas-proto-2bb34beffc12f512/build-script-build` (exit status: 101)
+  --- stdout
+  Running: "/usr/local/bin/protoc" "--include_imports" "--include_source_info" "-o" "/tmp/prost-buildgv9jEP/prost-descriptor-set" "-I" "proto" "proto/analyzer.proto3" "proto/identificator.proto3" "proto/cmdexec.proto3" "proto/common.proto3" "proto/files.proto3" "proto/filter.proto3" "proto/fs2dev.proto3" "proto/scsi.proto3" "proto/uploader.proto3" "proto/usbdev.proto3" "proto/usbsas.proto3" "proto/writefs.proto3" "proto/writetar.proto3"
+
+  --- stderr
+  thread 'main' panicked at 'Couldn't build protobuf files: Custom { kind: Other, error: "protoc failed: analyzer.proto3:1:10: Unrecognized syntax identifier \"proto3\".  This parser only recognizes \"proto2\".\n" }', usbsas-proto/build.rs:19:59
+  note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+=>
+!!!!!!!!!!!!!PROTO v2.6 et non 3 bien passer en 3!!!!!!!!!!!!!!!!!!
+
+TEST
+cargo build --all --features mock
+cargo test -p usbsas-server
+
+
+
